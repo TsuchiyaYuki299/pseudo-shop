@@ -14,13 +14,13 @@ export function ProductList({ products, onAddToCart }: Props) {
                     <div className="p-4">
                         <h2 className="text-lg font-bold text-gray-900 leading-tight mb-2">{product.name}</h2>
                         <p className="text-xs text-gray-500 mb-4 h-8">{product.description}</p>
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between md:flex-col md:items-start md:gap-3">
                             <span className="text-xl font-bold text-gray-900">
                                 ¥{product.price.toLocaleString()}
                             </span>
                             <button
                                 onClick={() => onAddToCart(product)}
-                                className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold py-2 px-4 rounded transition-colors"
+                                className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold py-2 px-4 rounded transition-colors md:w-full"
                             >
                                 カートに入れる
                             </button>
