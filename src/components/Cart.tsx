@@ -20,7 +20,14 @@ export function Cart({ items, total, onUpdateQuantity, onRemove, onCheckout }: P
                 <h2 className="text-2xl font-bold border-b pb-2">ショッピングカート</h2>
                 {items.map((item) => (
                     <div key={item.id} className="flex gap-4 border-b pb-4 items-center">
-                        <img src={item.imageUrl} alt={item.name} className="w-24 h-24 object-cover rounded" />
+                        {item.imageUrlMobile ? (
+                            <picture className="w-24 h-24 shrink-0 block">
+                                <source media="(max-width: 768px)" srcSet={item.imageUrlMobile} />
+                                <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover rounded" />
+                            </picture>
+                        ) : (
+                            <img src={item.imageUrl} alt={item.name} className="w-24 h-24 shrink-0 object-cover rounded" />
+                        )}
                         <div className="flex-1">
                             <h3 className="font-bold text-lg">{item.name}</h3>
                             <p className="text-gray-900 font-bold mb-2">¥{item.price.toLocaleString()}</p>
