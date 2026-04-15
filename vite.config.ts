@@ -11,4 +11,8 @@ export default defineConfig({
     // Dockerコンテナ外（ホストマシンのブラウザ）からアクセス可能にする
     host: '0.0.0.0',
   },
+  build: {
+    // モダンなモバイルブラウザでの互換性を確実にする
+    target: 'es2020',
+  },
 })
