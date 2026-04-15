@@ -22,3 +22,25 @@ https://pseudo-shop.tsuchiyayuki299.workers.dev/
 * **Animations:** canvas-confetti, Tailwind CSS (Custom Keyframes)
 * **Deployment:** Cloudflare Workers (Static Assets)
 
+## 🐳 ローカル開発環境の構築 (Docker)
+
+ホスト環境（ローカルPC）をクリーンに保つため、コンテナを使った隔離環境での開発をサポートしています。
+
+### 起動方法
+
+1. Docker Desktop等が起動していることを確認します。
+2. ターミナルで本プロジェクトのディレクトリを開き、以下のコマンドを実行します。
+
+```bash
+docker-compose up --build
+```
+
+### サーバーへのアクセス
+
+Dockerを立ち上げると、コンテナ内のサーバーにホストOSからアクセスできるようになります。
+
+- **Vite 開発サーバー（通常のUI確認）**: `http://localhost:5173`
+- **Wrangler シミュレーション**: `http://localhost:8788` （※コンテナ内で `npm run preview` を実行した場合）
+
+> [!NOTE]
+> `node_modules`はコンテナ内部で独立して保持されるように設定しているため、Windowsなどのホスト環境とLinux（Docker）環境の間でバイナリ（esbuild等）の互換性エラーが発生することを防ぎます。

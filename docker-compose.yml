@@ -1,0 +1,21 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pseudo-shop-dev
+    ports:
+      - "5173:5173"  # Vite 開発サーバー
+      - "8788:8788"  # Wrangler サーバー
+    volumes:
+      - .:/app
+      # ホスト側のOS依存(Windows等)のバイナリを含むnode_modulesをマウントしないようにする
+      # (Dockerコンテナ内でインストールしたものを維持するため)
+      - /app/node_modules
+    environment:
+      # Windows/Docker Desktop環境でのファイル変更検知用
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    tty: true
+    # 起動コマンド
+    command: npm run dev

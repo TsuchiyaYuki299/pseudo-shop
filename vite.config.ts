@@ -7,4 +7,8 @@ import { cloudflare } from "@cloudflare/vite-plugin";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss(), cloudflare()],
+  server: {
+    // Dockerコンテナ外（ホストマシンのブラウザ）からアクセス可能にする
+    host: '0.0.0.0',
+  },
 })
