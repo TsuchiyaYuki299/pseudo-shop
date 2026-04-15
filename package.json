@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "npm run build && wrangler dev",
+    "preview": "npm run build && wrangler dev --ip 0.0.0.0",
     "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
