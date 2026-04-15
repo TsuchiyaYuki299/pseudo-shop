@@ -4,6 +4,7 @@ import type { Product, CartItem } from './types';
 import { ProductList } from './components/ProductList';
 import { Cart } from './components/Cart';
 import { CheckoutFlow } from './components/CheckoutFlow';
+import { AddToCartModal } from './components/AddToCartModal';
 
 // 非現実的なダミーデータ
 const MOCK_PRODUCTS: Product[] = [
@@ -16,6 +17,8 @@ export default function App() {
   const [currentView, setCurrentView] = useState<'products' | 'cart'>('products');
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
+  // ポップアップに表示する商品名（nullの場合はポップアップ非表示）
+  const [addedProductName, setAddedProductName] = useState<string | null>(null);
 
   const addToCart = (product: Product) => {
     setCart((prev) => {
@@ -27,6 +30,8 @@ export default function App() {
       }
       return [...prev, { ...product, quantity: 1 }];
     });
+    // カートに追加した商品名をセットしてポップアップを表示する
+    setAddedProductName(product.name);
   };
 
   const updateQuantity = (id: string, delta: number) => {
@@ -94,6 +99,14 @@ export default function App() {
           />
         )}
       </main>
+
+      {/* カート追加ポップアップ */}
+      {addedProductName && (
+        <AddToCartModal
+          productName={addedProductName}
+          onClose={() => setAddedProductName(null)}
+        />
+      )}
 
       {/* 決済演出コンポーネント */}
       {isCheckingOut && <CheckoutFlow onComplete={handleCheckoutComplete} />}
