@@ -8,9 +8,9 @@ import { AddToCartModal } from './components/AddToCartModal';
 
 // 非現実的なダミーデータ
 const MOCK_PRODUCTS: Product[] = [
-  { id: '1', name: 'ドラえもんのどこでもドア', price: 980000000, imageUrl: '/Gemini_Generated_Image_door.avif', description: '空間を繋ぐ夢のドア。※設置工事費別' },
+  { id: '1', name: 'ドラえもんのどこでもドア', price: 980000000, imageUrl: '/door_pc.avif', imageUrlMobile: '/door_mobile.avif', description: '空間を繋ぐ夢のドア。※設置工事費別' },
   { id: '2', name: '東京都庁（第一本庁舎）', price: 156900000000, imageUrl: '/tokyo.avif', description: '新宿区西新宿にある超高層ビル。' },
-  { id: '3', name: '月への旅行チケット（ペア）', price: 25000000000, imageUrl: '/Gemini_Generated_Image_moon.avif', description: '往復の宇宙船チケット。※宇宙食はオプションです' },
+  { id: '3', name: '月への旅行チケット（ペア）', price: 25000000000, imageUrl: '/moon_pc.avif', imageUrlMobile: '/moon_mobile.avif', description: '往復の宇宙船チケット。※宇宙食はオプションです' },
 ];
 
 export default function App() {

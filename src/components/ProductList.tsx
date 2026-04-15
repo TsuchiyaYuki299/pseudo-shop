@@ -8,9 +8,16 @@ interface Props {
 export function ProductList({ products, onAddToCart }: Props) {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((product) => (
+            {products.map((product, index) => (
                 <div key={product.id} className="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-white">
-                    <img src={product.imageUrl} alt={product.name} className="w-full h-48 object-cover" />
+                    {product.imageUrlMobile ? (
+                        <picture>
+                            <source media="(max-width: 768px)" srcSet={product.imageUrlMobile} />
+                            <img src={product.imageUrl} alt={product.name} className="w-full h-48 object-cover" fetchPriority={index === 0 ? "high" : "auto"} />
+                        </picture>
+                    ) : (
+                        <img src={product.imageUrl} alt={product.name} className="w-full h-48 object-cover" fetchPriority={index === 0 ? "high" : "auto"} />
+                    )}
                     <div className="p-4">
                         <h2 className="text-lg font-bold text-gray-900 leading-tight mb-2">{product.name}</h2>
                         <p className="text-xs text-gray-500 mb-4 h-8">{product.description}</p>
