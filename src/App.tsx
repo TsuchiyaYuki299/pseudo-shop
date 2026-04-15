@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ShoppingCart, Store } from 'lucide-react';
 import type { Product, CartItem } from './types';
 import { ProductList } from './components/ProductList';
@@ -6,19 +6,33 @@ import { Cart } from './components/Cart';
 import { CheckoutFlow } from './components/CheckoutFlow';
 import { AddToCartModal } from './components/AddToCartModal';
 
-// 非現実的なダミーデータ
-const MOCK_PRODUCTS: Product[] = [
-  { id: '1', name: 'ドラえもんのどこでもドア', price: 980000000, imageUrl: '/door_pc.avif', imageUrlMobile: '/door_mobile.avif', description: '空間を繋ぐ夢のドア。※設置工事費別' },
-  { id: '2', name: '東京都庁（第一本庁舎）', price: 156900000000, imageUrl: '/tokyo.avif', description: '新宿区西新宿にある超高層ビル。' },
-  { id: '3', name: '月への旅行チケット（ペア）', price: 25000000000, imageUrl: '/moon_pc.avif', imageUrlMobile: '/moon_mobile.avif', description: '往復の宇宙船チケット。※宇宙食はオプションです' },
-];
+// ダミーデータはCloudflare D1に移行したため削除
 
 export default function App() {
   const [currentView, setCurrentView] = useState<'products' | 'cart'>('products');
+  // D1から取得した商品を保存するステート
+  const [products, setProducts] = useState<Product[]>([]);
+  // 読み込み中かどうかを判定するステート
+  const [isLoading, setIsLoading] = useState(true);
+  
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   // ポップアップに表示する商品名（nullの場合はポップアップ非表示）
   const [addedProductName, setAddedProductName] = useState<string | null>(null);
+
+  // 初回起動時にAPIから商品データを読み込む
+  useEffect(() => {
+    fetch('/api/products')
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error('商品データの取得に失敗しました:', error);
+        setIsLoading(false);
+      });
+  }, []);
 
   const addToCart = (product: Product) => {
     setCart((prev) => {
@@ -88,7 +102,15 @@ export default function App() {
 
       <main className="max-w-4xl mx-auto p-4 md:p-6">
         {currentView === 'products' ? (
-          <ProductList products={MOCK_PRODUCTS} onAddToCart={addToCart} />
+          isLoading ? (
+            <div className="flex flex-col items-center justify-center p-20 gap-4">
+              {/* 簡単なローディングアニメーション */}
+              <div className="w-12 h-12 border-4 border-gray-300 border-t-orange-500 rounded-full animate-spin"></div>
+              <p className="text-gray-500 font-bold tracking-widest">商品情報を取得中...</p>
+            </div>
+          ) : (
+            <ProductList products={products} onAddToCart={addToCart} />
+          )
         ) : (
           <Cart
             items={cart}
