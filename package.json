@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "dev:api": "wrangler pages dev http://localhost:5173 --ip 0.0.0.0",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "npm run build && wrangler dev --ip 0.0.0.0",
