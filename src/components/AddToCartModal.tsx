@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { CheckCircle, ArrowLeft } from "lucide-react";
 
 interface Props {
-  productName: string;
-  onClose: () => void;
+  readonly productName: string;
+  readonly onClose: () => void;
 }
 
 /**
