@@ -1,6 +1,10 @@
 # Node.js 22(LTS)ベースイメージ
 FROM node:22-slim
 
+# 【ここに追加！】
+# パッケージインストール中の対話（スクリプト実行）を無効にする設定
+ENV DEBIAN_FRONTEND=noninteractive
+
 WORKDIR /app
 
 # パッケージ定義ファイルをコピー
@@ -8,7 +12,7 @@ COPY package*.json ./
 
 # 依存パッケージのインストール
 # (Dockerコンテナ専用のLinuxベースモジュールとしてインストールします)
-RUN npm install
+RUN npm install --ignore-scripts
 
 # プロジェクトのソースコードをコピー
 COPY . .
