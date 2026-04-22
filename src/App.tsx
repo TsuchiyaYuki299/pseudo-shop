@@ -79,13 +79,14 @@ export default function App() {
     <div className="min-h-screen bg-white text-gray-800 font-sans">
       {/* 真面目なECサイト風のヘッダー */}
       <header className="bg-gray-900 text-white p-4 sticky top-0 z-10 flex items-center justify-between shadow-md">
-        <div
+        <button
+        type='button'
           className="flex items-center gap-2 cursor-pointer"
           onClick={() => setCurrentView('products')}
         >
           <Store size={24} />
           <h1 className="text-xl font-bold tracking-wider">Giji-Shop.jp</h1>
-        </div>
+        </button>
         <button
           onClick={() => setCurrentView('cart')}
           className="relative p-2 hover:bg-gray-800 rounded transition-colors"
