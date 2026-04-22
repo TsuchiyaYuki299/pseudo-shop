@@ -61,7 +61,7 @@ export function CheckoutFlow({ onComplete }: Props) {
           {/* トラック本体 */}
           <div className="w-48 h-32 bg-blue-400 rounded-xl relative shadow-lg">
             {/* 運転席 */}
-            <div className="absolute right-[-40px] bottom-0 w-16 h-20 bg-blue-300 rounded-r-xl border-l-4 border-blue-500">
+            <div className="absolute -right-10 bottom-0 w-16 h-20 bg-blue-300 rounded-r-xl border-l-4 border-blue-500">
               <div className="absolute top-2 right-2 w-10 h-10 bg-sky-200 rounded"></div>
             </div>
             {/* 可愛いキャラクター（Duolingo風のアウルをイメージ） */}
@@ -77,8 +77,8 @@ export function CheckoutFlow({ onComplete }: Props) {
               Giji-Shop
             </div>
             {/* タイヤ */}
-            <div className="absolute bottom-[-16px] left-6 w-12 h-12 bg-gray-800 rounded-full border-4 border-gray-300"></div>
-            <div className="absolute bottom-[-16px] right-[-24px] w-12 h-12 bg-gray-800 rounded-full border-4 border-gray-300"></div>
+            <div className="absolute -bottom-4 left-6 w-12 h-12 bg-gray-800 rounded-full border-4 border-gray-300"></div>
+            <div className="absolute -bottom-4 -right-6 w-12 h-12 bg-gray-800 rounded-full border-4 border-gray-300"></div>
           </div>
         </div>
       )}
