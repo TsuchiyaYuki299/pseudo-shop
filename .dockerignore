@@ -1,0 +1,22 @@
+# .dockerignore
+
+# Git関連
+.git
+.gitignore
+
+# 機密情報（環境変数など）
+.env
+.env.*
+
+# 依存関係（コンテナ内でnpm installして作り直すため不要）
+node_modules
+npm-debug.log
+
+# ビルドの出力結果や一時ファイル
+dist
+build
+.wrangler
+
+# エディタやOSの自動生成ファイル
+.vscode
+.DS_Store
