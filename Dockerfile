@@ -13,6 +13,11 @@ RUN npm install
 # プロジェクトのソースコードをコピー
 COPY . .
 
+# root権限でコピー・作成したファイルの所有者を、安全なnodeユーザーに変更します
+RUN chown -R node:node /app
+# 実行ユーザーを root から node に切り替えます
+USER node
+
 # 開発用ポートの開放
 # 5173: Vite開発サーバー
 # 8788: Wranglerローカルシミュレーション
