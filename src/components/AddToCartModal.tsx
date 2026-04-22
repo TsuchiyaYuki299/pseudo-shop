@@ -35,7 +35,6 @@ export function AddToCartModal({ productName, onClose }: Props) {
 
       {/* モーダル本体（z-10で背景より前面に出す。stopPropagationは不要に！） */}
       <div className="relative z-10 bg-white rounded-2xl shadow-2xl p-8 mx-4 max-w-sm w-full text-center animate-[modalIn_0.3s_ease-out]">
-        // --- 【修正ここまで】 ---
         {/* チェックマークアイコン */}
         <div className="flex justify-center mb-4">
           <div className="bg-green-100 rounded-full p-3">
